@@ -1,0 +1,28 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+        // Configure glob patterns for excluding files and folders.
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true,
+
+        // Exclude all ASP.NET Related Folders
+        "App_Data" : true,
+        "App_Start" : true,
+        "Areas" : true,
+        "bin" : true,
+        "Content" : true,
+        "Controllers" : true,
+        "fonts" : true,
+        "Models" : true,
+        "obj" : true,
+        "Properties" : true,
+        "Scripts" : true,
+        "Views" : true,
+        "*.config" : true,
+        "*.cs" : true,
+        "*.asax" : true,
+        "*.csproj*" : true
+    }
+}
