@@ -21,14 +21,15 @@ class LoginLayout extends React.Component {
         super(props);
     }
     render() {
-        const { loginUserPending } = this.props;
-
+        const { loginUser, loginRequestPending } = this.props;
         return (
             <StyleRoot>
                 <div style={styles.layoutWrapper}>
                     <Helmet title="Login Page" />
-                    <h1>ToDo App Login Page</h1>  
-                    <LoginForm loginUserPending={loginUserPending}/>
+                    {
+                        loginRequestPending ? <h1>Pending</h1>  :  <h1>ToDo App Login Page</h1> 
+                    }
+                    <LoginForm loginUser={loginUser}/>
                 </div>
             </StyleRoot>
         );
