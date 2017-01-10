@@ -1,9 +1,11 @@
 //https://github.com/mzabriskie/axios
 //Polyfill for URLSearchParams
 import 'url-search-params';
-import client from '../../api';
 import Notifications from 'react-notification-system-redux';
 import { browserHistory } from 'react-router'
+
+import client from '../../api';
+import {createUserSession} from '../../util/auth';
 
 const LOGIN_USER_REQUEST = 'LOGIN_USER_REQUEST';
 const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';
@@ -16,9 +18,6 @@ const notificationOpts = {
     position: 'tc',
     autoDismiss: 1
 };
-
-
-
 
 export default function reducer(state = {
     loginError: null,
@@ -56,10 +55,6 @@ export function loginUser(credentials) {
 
     return function (dispatch) {
         dispatch(loginUserRequest());
-        // setTimeout(function () {
-        //     dispatch(loginUserSuccess());
-        // }, 2000);
-
 
         //https://github.com/WebReflection/url-search-params
         var params = new URLSearchParams();
@@ -67,10 +62,9 @@ export function loginUser(credentials) {
         params.append('username', credentials.email);
         params.append('password', credentials.password);
 
-        client.post('/token', params).then(function (response) {
-            console.log(response);
+        client.post('/token', params).then(function (response) {            
             dispatch(loginUserSuccess());
-
+            createUserSession(response.data.access_token);
         }).catch(function (error) {
             dispatch(loginUserError(error));
             dispatch(Notifications.error(notificationOpts));

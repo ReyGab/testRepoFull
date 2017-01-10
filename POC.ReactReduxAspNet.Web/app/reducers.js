@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 
-import { reducer as formReducer } from 'redux-form';
+import { reducer as form } from 'redux-form';
+import { reducer as notifications} from 'react-notification-system-redux'
 import loginReducer from './features/login/duck';
-import {reducer as notifications} from 'react-notification-system-redux'
 
 const reducers = combineReducers({
     loginReducer,
     notifications,
-    form: formReducer
+    form
 });
 
 export default reducers;

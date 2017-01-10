@@ -2,7 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import Radium, { StyleRoot } from 'radium';
 import colorPalette from '../../../util/color-palette';
-import LoginForm from './login-form';
+import Header from './header';
 
 const styles = {
     layoutWrapper: {
@@ -16,23 +16,21 @@ const styles = {
 };
 
 @Radium
-class LoginLayout extends React.Component {
+class MainPage extends React.Component {
     constructor(props) {
         super(props);
     }
     render() {
-        console.log('Login Page Render');
-
-        const { loginUser, loginRequestPending } = this.props;
+        console.log('Main Page Render');
         return (
             <StyleRoot>
                 <div style={styles.layoutWrapper}>
-                    <Helmet title="Login Page" />
-                    <h1>ToDo App Login Page</h1>
-                    <LoginForm loginUser={loginUser} loginRequestPending={loginRequestPending} />
+                    <Helmet title="Main Page" />
+                    <Header/>
+                    <h1>Main Page</h1>
                 </div>
             </StyleRoot>
         );
     }
 }
-export default LoginLayout;
+export default MainPage;
