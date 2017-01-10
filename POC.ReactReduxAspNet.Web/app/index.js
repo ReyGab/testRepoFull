@@ -13,7 +13,7 @@ import { Provider } from 'react-redux';
 //App
 import store from './store';
 import getRoutes from './routes';
-
+import NotificationsContainer from './shared-components/notifications';
 
 //http://www.material-ui.com/#/get-started/installation
 injectTapEventPlugin();
@@ -24,8 +24,9 @@ render(
             <div>
                 <Helmet titleTemplate="TodoApp - %s" />
                 {getRoutes()}
+                <NotificationsContainer/>
             </div>
-        </MuiThemeProvider>
+        </MuiThemeProvider>        
     </Provider>,
     document.getElementById('root')
 );

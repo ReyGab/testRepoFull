@@ -9,7 +9,7 @@ import colorPalette from '../../../util/color-palette';
 
 // validation functions
 const required = value => value == null ? '* Required' : undefined
-const email    = value => value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ? 'Invalid email' : undefined
+const email = value => value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ? 'Invalid email' : undefined
 
 const styles = {
     formWrapper: {
@@ -66,21 +66,23 @@ class LoginForm extends React.Component {
      */
     render() {
 
-        const { handleSubmit } = this.props        
+        const { handleSubmit, loginRequestPending } = this.props
 
         return (
             <StyleRoot>
                 <form style={styles.formWrapper} onSubmit={handleSubmit(this.login.bind(this))} >
                     <Field name="email"
+                        disabled={loginRequestPending}
                         component={TextField}
                         hintText="Enter your email"
                         floatingLabelText="Email"
                         fullWidth={true}
-                        validate={[required, email]} 
+                        validate={[required, email]}
                         ref="email" withRef
                         />
 
                     <Field name="password"
+                        disabled={loginRequestPending}
                         component={TextField}
                         hintText="Enter your password"
                         floatingLabelText="Password"
@@ -94,7 +96,14 @@ class LoginForm extends React.Component {
                         label="Login"
                         fullWidth={true}
                         primary={true}
+                        disabled={loginRequestPending}
                         />
+                    {loginRequestPending ?
+                        <p>
+                            Logging you in..
+                        </p>
+                        : null
+                    }
                 </form>
             </StyleRoot>
         );

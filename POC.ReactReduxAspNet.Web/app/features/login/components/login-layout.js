@@ -8,8 +8,8 @@ const styles = {
     layoutWrapper: {
         backgroundColor: colorPalette.mainBgColor,
         display: 'flex',
-        flexDirection : 'column',
-        height : '100vh',
+        flexDirection: 'column',
+        height: '100vh',
         alignItems: 'center',
         justifyContent: 'center'
     }
@@ -26,10 +26,8 @@ class LoginLayout extends React.Component {
             <StyleRoot>
                 <div style={styles.layoutWrapper}>
                     <Helmet title="Login Page" />
-                    {
-                        loginRequestPending ? <h1>Pending</h1>  :  <h1>ToDo App Login Page</h1> 
-                    }
-                    <LoginForm loginUser={loginUser}/>
+                    <h1>ToDo App Login Page</h1>
+                    <LoginForm loginUser={loginUser} loginRequestPending={loginRequestPending} />
                 </div>
             </StyleRoot>
         );
