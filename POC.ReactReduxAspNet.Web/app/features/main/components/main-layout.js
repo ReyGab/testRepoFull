@@ -7,30 +7,25 @@ import Header from './header';
 const styles = {
     layoutWrapper: {
         backgroundColor: colorPalette.mainBgColor,
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100vh',
-        alignItems: 'center',
-        justifyContent: 'center'
     }
 };
 
 @Radium
-class MainPage extends React.Component {
+class MainLayout extends React.Component {
     constructor(props) {
         super(props);
     }
     render() {
         console.log('Main Page Render');
+        const { currentUser} = this.props; //Props
+        const {logoutCurrentUser} = this.props; //Actions
         return (
             <StyleRoot>
                 <div style={styles.layoutWrapper}>
-                    <Helmet title="Main Page" />
-                    <Header/>
-                    <h1>Main Page</h1>
+                    <Header logoutCurrentUser={logoutCurrentUser} currentUser={currentUser} />
                 </div>
             </StyleRoot>
         );
     }
 }
-export default MainPage;
+export default MainLayout;

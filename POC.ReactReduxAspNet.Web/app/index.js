@@ -14,15 +14,11 @@ import { Provider } from 'react-redux';
 import store from './store';
 import getRoutes from './routes';
 import NotificationsContainer from './shared-components/notifications';
-import checkIfUserHasSession  from './util/auth';
 
 console.log('[APP START]');
 
 //http://www.material-ui.com/#/get-started/installation
 injectTapEventPlugin();
-
-//Check if there is user currently logged-in
-checkIfUserHasSession();
 
 render(
     <Provider store={store}>

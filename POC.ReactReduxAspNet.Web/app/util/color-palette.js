@@ -1,3 +1,5 @@
 export default {
-    mainBgColor: '#dfdfdf'
+    mainBgColor: '#dfdfdf',
+    primaryColor: '#00bcd4',
+    white : 'white'
 };

@@ -5,7 +5,7 @@ import Notifications from 'react-notification-system-redux';
 import { browserHistory } from 'react-router'
 
 import client from '../../api';
-import {createUserSession} from '../../util/auth';
+import { createUserSession } from '../../util/auth';
 
 const LOGIN_USER_REQUEST = 'LOGIN_USER_REQUEST';
 const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';
@@ -62,9 +62,18 @@ export function loginUser(credentials) {
         params.append('username', credentials.email);
         params.append('password', credentials.password);
 
-        client.post('/token', params).then(function (response) {            
+        client.post('/token', params).then(function (response) {
+
             dispatch(loginUserSuccess());
-            createUserSession(response.data.access_token);
+            
+            console.log(response.data);
+
+            createUserSession(
+                response.data.access_token,
+                response.data.refresh_token,
+                response.data.Id
+            );
+
         }).catch(function (error) {
             dispatch(loginUserError(error));
             dispatch(Notifications.error(notificationOpts));
@@ -74,19 +83,19 @@ export function loginUser(credentials) {
 }
 
 
-export function loginUserRequest() {
+function loginUserRequest() {
     return {
         type: LOGIN_USER_REQUEST
     };
 }
 
 
-export function loginUserSuccess() {
+function loginUserSuccess() {
     return {
         type: LOGIN_USER_SUCCESS
     };
 }
 
-export function loginUserError(error) {
+function loginUserError(error) {
     return { type: LOGIN_USER_ERROR, error };
 }

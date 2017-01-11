@@ -3,15 +3,20 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import LoginLayout from '../components/login-layout'
 import * as duck from '../duck';
+import checkIfUserHasSession from '../../../util/auth';
 
 @connect(
     (state) => state.loginReducer,
-    (dispatch) => ({actions: bindActionCreators(duck, dispatch)})
+    (dispatch) => ({ actions: bindActionCreators(duck, dispatch) })
 )
 class LoginContainer extends React.Component {
-    render() {        
+    componentWillMount() {
+        checkIfUserHasSession();
+    }
+    
+    render() {
         const { loginUser } = this.props.actions;
-        const { loginError,loginRequestPending } = this.props;
+        const { loginError, loginRequestPending } = this.props;
         return (<LoginLayout loginUser={loginUser} loginError={loginError} loginRequestPending={loginRequestPending} />);
     }
 }
