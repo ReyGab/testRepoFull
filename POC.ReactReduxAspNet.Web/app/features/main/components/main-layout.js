@@ -2,11 +2,15 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import Radium, { StyleRoot } from 'radium';
 import colorPalette from '../../../util/color-palette';
+import animations from '../../../util/animations';
 import Header from './header';
 
 const styles = {
     layoutWrapper: {
-        backgroundColor: colorPalette.mainBgColor,
+        backgroundColor: colorPalette.mainBgColor
+    },
+    contentWrapper: {
+        backgroundColor: 'pink'
     }
 };
 
@@ -18,11 +22,14 @@ class MainLayout extends React.Component {
     render() {
         console.log('Main Page Render');
         const { currentUser} = this.props; //Props
-        const {logoutCurrentUser} = this.props; //Actions
+        const {logoutCurrentUser, childRoutes} = this.props; //Actions
         return (
             <StyleRoot>
                 <div style={styles.layoutWrapper}>
                     <Header logoutCurrentUser={logoutCurrentUser} currentUser={currentUser} />
+                    <div style={[styles.contentWrapper, animations.fadeIn]}>
+                        {childRoutes}
+                    </div>
                 </div>
             </StyleRoot>
         );

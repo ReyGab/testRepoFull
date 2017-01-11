@@ -16,7 +16,6 @@ export default function reducer(state = {
             };
             return state
 
-
         case APP_USER_INFO_SUCCESS:
             state = {
                 ...state, currentUserInfoRequestPending: false,

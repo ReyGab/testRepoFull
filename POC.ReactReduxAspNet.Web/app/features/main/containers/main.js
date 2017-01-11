@@ -21,10 +21,15 @@ class MainContainer extends React.Component {
     render() {
         const { logoutCurrentUser } = this.props.actions;
         const { currentUserInfoRequestPending, currentUser } = this.props;
-
-        if (!currentUserInfoRequestPending)
-             return (<MainLayout currentUser={currentUser} logoutCurrentUser={logoutCurrentUser} />);
-        else return (<StyleRoot><LoadingScreen /></StyleRoot>)
+        return (
+            <StyleRoot>
+            {
+                currentUserInfoRequestPending ?
+                <LoadingScreen />:
+                <MainLayout currentUser={currentUser} logoutCurrentUser={logoutCurrentUser} childRoutes={this.props.children}/>
+            }
+            </StyleRoot>
+        );
     }
 }
 export default MainContainer;
