@@ -7,7 +7,7 @@ const styles = {
     layoutWrapper: {
         backgroundColor: colorPalette.mainBgColor,
         minHeight: '100vh',
-        display:'flex',
+        display: 'flex',
         alignItems: 'center'
 
     }
@@ -19,12 +19,19 @@ class UserList extends React.Component {
         super(props);
     }
     render() {
-        console.log('User List')
+        const {userList} = this.props;
         return (
             <StyleRoot>
                 <Helmet title="User List" />
                 <div style={styles.layoutWrapper}>
-                   <p>Hello</p>
+                    <h1>List of Users</h1>
+                    <ul>
+                        {
+                            userList.map(function (user) {
+                                return <li key={user.id}>{user.fullname}</li>
+                            })
+                        }
+                    </ul>
                 </div>
             </StyleRoot>
         );

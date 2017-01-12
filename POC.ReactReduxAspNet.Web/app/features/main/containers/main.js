@@ -12,8 +12,11 @@ import Radium, { StyleRoot } from 'radium';
 )
 @Radium
 class MainContainer extends React.Component {
+
     componentWillMount() {
-        const {getCurrentUserInfo} = this.props.actions;
+        const { getCurrentUserInfo} = this.props.actions;
+        const { currentUser } = this.props;
+
         checkIfUserHasSession();
         getCurrentUserInfo();
     }

@@ -28,7 +28,7 @@ class MainLayout extends React.Component {
                 <div style={styles.layoutWrapper}>
                     <Header logoutCurrentUser={logoutCurrentUser} currentUser={currentUser} />
                     <div style={[styles.contentWrapper, animations.fadeIn]}>
-                        {childRoutes}
+                        {childRoutes && React.cloneElement(childRoutes, { currentUser })}
                     </div>
                 </div>
             </StyleRoot>

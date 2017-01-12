@@ -3,6 +3,7 @@ import client from '../../api';
 
 const APP_GET_USER_LIST_REQUEST = 'APP_GET_USER_LIST_REQUEST';
 const APP_GET_USER_LIST_SUCCESS = 'APP_GET_USER_LIST_SUCCESS';
+const APP_GET_USER_LIST_ERROR = 'APP_GET_USER_LIST_ERROR';
 
 export default function reducer(state = {
     getUserListRequestPending: true,
@@ -16,6 +17,15 @@ export default function reducer(state = {
             return state
 
         case APP_GET_USER_LIST_SUCCESS:
+            state = {
+                ...state, 
+                getUserListRequestPending: false,
+                userList : action.userList
+            };
+            return state
+
+
+        case APP_GET_USER_LIST_ERROR:
             state = {
                 ...state, getUserListRequestPending: false,
             };
@@ -31,21 +41,30 @@ function getUserListRequest() {
     };
 }
 
-function getUserListSuccess() {
+function getUserListSuccess(userList) {
     return {
-        type: APP_GET_USER_LIST_SUCCESS
+        type: APP_GET_USER_LIST_SUCCESS,
+        userList
     };
 }
 
 
+function getUserListError() {
+    return {
+        type: APP_GET_USER_LIST_ERROR
+    };
+}
+
 export function getUserList() {
+
     return function (dispatch) {
+
         dispatch(getUserListRequest())
         client.get(`api/user/GetAllUser`).then(function (response) {
-            dispatch(getUserListSuccess())
-            console.log(response);
+            dispatch(getUserListSuccess(response.data));
         }).catch(function (error) {
-            console.log(error);
+            console.log(error)
+            dispatch(getUserListError())
         });
     }
 }

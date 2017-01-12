@@ -10,6 +10,14 @@ function setAuthorizationHeader(token) {
     }
 }
 
+/**
+ * Create A New User Session
+ * 
+ * @export
+ * @param {any} token
+ * @param {any} refreshToken
+ * @param {any} currentUserId
+ */
 export function createUserSession(token, refreshToken,currentUserId) {
     localStorage.setItem('token', token);
     localStorage.setItem('refreshToken', refreshToken);
@@ -18,6 +26,24 @@ export function createUserSession(token, refreshToken,currentUserId) {
     browserHistory.replace('/');
 }
 
+/**
+ * Refresh the User Session
+ * 
+ * @export
+ * @param {any} token
+ * @param {any} refreshToken
+ */
+export function refreshUserSession(token, refreshToken) {
+    localStorage.setItem('token', token);
+    localStorage.setItem('refreshToken', refreshToken);    
+    setAuthorizationHeader(token);
+}
+
+/**
+ * Logout the User Session
+ * 
+ * @export
+ */
 export function logoutUserSession() {
     localStorage.removeItem('token');
     localStorage.removeItem('refreshToken');
@@ -26,14 +52,26 @@ export function logoutUserSession() {
     browserHistory.replace('/login');
 }
 
+
+export function unauthorizedResourceAccessedByUser() {
+    browserHistory.replace('/unauthorized');
+}
+
+
+/**
+ * Check if a User has Session
+ * 
+ * @export
+ */
 export default function checkIfUserHasSession() {
+
     const token = localStorage.getItem('token');
     if (token) {
-        browserHistory.replace('/');
         setAuthorizationHeader(token);
+        browserHistory.replace('/');
     }
     else {
-        browserHistory.replace('/login');
         setAuthorizationHeader(false);
+        browserHistory.replace('/login');
     }
 }

@@ -12,19 +12,20 @@ import Radium, { StyleRoot } from 'radium';
 )
 @Radium
 class UsersContainer extends React.Component {
+
     componentWillMount() {
-        
         const {getUserList} = this.props.actions;
+        const {currentUser} = this.props;
         getUserList();
     }
 
-    render() {    
+    render() {
         const { getUserListRequestPending, userList } = this.props;
         return (
             <StyleRoot>
-            {
-                getUserListRequestPending ? <LoadingScreen /> : <UsersList />
-            }
+                {
+                    getUserListRequestPending ? <LoadingScreen /> : <UsersList userList={userList}/>
+                }
             </StyleRoot>
         );
     }

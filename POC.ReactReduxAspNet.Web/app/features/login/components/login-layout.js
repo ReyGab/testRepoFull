@@ -21,8 +21,6 @@ class LoginLayout extends React.Component {
         super(props);
     }
     render() {
-        console.log('Login Page Render');
-
         const { loginUser, loginRequestPending } = this.props;
         return (
             <StyleRoot>
