@@ -2,6 +2,7 @@ import { createStore,compose } from 'redux';
 import reducers from './reducers';
 import middlewares from './middlewares';
 
+
 //Hook redux dev tools
 //https://github.com/zalmoxisus/redux-devtools-extension#usage
 const store = createStore(
