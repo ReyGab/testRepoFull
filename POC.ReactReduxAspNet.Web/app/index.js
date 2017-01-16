@@ -15,6 +15,7 @@ import store from './store';
 import getRoutes from './routes';
 import NotificationsContainer from './shared-components/notifications';
 
+
 console.log('[APP START]');
 
 //http://www.material-ui.com/#/get-started/installation

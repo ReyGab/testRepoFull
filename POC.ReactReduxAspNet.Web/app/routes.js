@@ -11,9 +11,15 @@ import UsersContainer from './features/users/containers/users';
 import UsersList from './features/users/components/users-list';
 
 
+import { syncHistoryWithStore } from 'react-router-redux'
+import store from './store';
+
+// Create an enhanced history that syncs navigation events with the store
+const history = syncHistoryWithStore(browserHistory, store)
+
 export default () => {
     return (
-        <Router history={browserHistory}>
+        <Router history={history}>
             <Route path="/" component={MainContainer}>
                 <IndexRoute component={UsersContainer} />
             </Route>

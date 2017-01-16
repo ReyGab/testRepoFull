@@ -4,6 +4,7 @@ import { reducer as notifications } from 'react-notification-system-redux'
 import loginReducer from './features/login/duck';
 import mainPageReducer from './features/main/duck';
 import userReducer from './features/users/duck';
+import { routerReducer } from 'react-router-redux'
 
 //http://stackoverflow.com/questions/35622588/how-to-reset-the-state-of-a-redux-store
 const appReducer = combineReducers({
@@ -11,7 +12,8 @@ const appReducer = combineReducers({
     mainPageReducer,
     userReducer,
     notifications,
-    form
+    form,
+    routing : routerReducer
 });
 
 
