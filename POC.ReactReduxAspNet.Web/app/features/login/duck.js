@@ -1,6 +1,6 @@
 //https://github.com/mzabriskie/axios
 //Polyfill for URLSearchParams
-import 'url-search-params';
+import URLSearchParams from 'url-search-params';
 import Notifications from 'react-notification-system-redux';
 import { browserHistory } from 'react-router'
 

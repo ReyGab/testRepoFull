@@ -6,7 +6,9 @@
   "scripts": {
     "start": "webpack-dev-server --port 9090",
     "build": "webpack -progress",
-    "build:prod": "webpack -p -progress"
+    "build:prod": "webpack -p -progress",
+    "test": "mocha --require ./test-setup.js --compilers babel-core/register ./app/**/*.spec.js",
+    "test:watch": "npm test -- -w"
   },
   "author": "",
   "license": "ISC",
@@ -35,7 +37,12 @@
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-2": "^6.18.0",
+    "chai": "^3.5.0",
+    "jsdom": "^9.9.1",
+    "mocha": "^3.2.0",
+    "react-addons-test-utils": "^15.4.2",
     "react-hot-loader": "^1.3.1",
+    "sinon": "^1.17.7",
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2"
   },
