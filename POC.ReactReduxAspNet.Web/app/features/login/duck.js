@@ -4,7 +4,6 @@ import URLSearchParams from 'url-search-params';
 import Notifications from 'react-notification-system-redux';
 import { browserHistory } from 'react-router'
 
-import client from '../../api';
 import { createUserSession } from '../../util/auth';
 
 const LOGIN_USER_REQUEST = 'LOGIN_USER_REQUEST';
@@ -53,7 +52,7 @@ export default function reducer(state = {
 
 export function loginUser(credentials) {
 
-    return function (dispatch) {
+    return function (dispatch, getState, {client}) {
         dispatch(loginUserRequest());
 
         //https://github.com/WebReflection/url-search-params

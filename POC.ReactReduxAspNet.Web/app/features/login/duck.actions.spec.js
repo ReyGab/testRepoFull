@@ -1,7 +1,7 @@
 import {loginUser} from './duck.js';
 import sinon from 'sinon';
 import {expect} from 'chai';
-import 'url-search-params';
+import {resolvedPromise} from '../../util/test-helper';
 
 describe('Login - Actions', () => {
     
@@ -16,10 +16,12 @@ describe('Login - Actions', () => {
                 password: 'abcdE123'
             };
             const dispatch = sinon.spy();
+            const client = {post: () => {}};
+            client.post = sinon.stub().returns(resolvedPromise(null));
 
 
             // Act
-            loginUser(credentials)(dispatch);
+            loginUser(credentials)(dispatch, {}, {client});
 
 
             // Assert
