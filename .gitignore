@@ -250,3 +250,6 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+/BEACON2.Web/App_Data/BEACON2.Web.XML
+/BEACON2.Web/App_Data/Document
+/BEACON2.Web/dist/bundle.js
